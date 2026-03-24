@@ -1,423 +1,907 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color-mode="dark" data-dark-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saad Sohail — GitHub Engineering Stats</title>
+<title>saad-obenan (Saad Sohail) · GitHub</title>
+<link rel="icon" href="https://github.githubassets.com/favicons/favicon-dark.svg">
 <style>
+  /* ── GitHub Dark Theme Reset ── */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
     background: #0d1117;
+    color: #e6edf3;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── GitHub Top Nav ── */
+  .gh-header {
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 0 32px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .gh-logo svg { fill: #f0f6fc; }
+
+  .gh-search {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: #8b949e;
+    font-size: 14px;
+    width: 272px;
+  }
+
+  .gh-nav-links { display: flex; gap: 16px; margin-left: auto; }
+  .gh-nav-links a { color: #f0f6fc; font-size: 14px; font-weight: 600; }
+  .gh-nav-links a:hover { color: #58a6ff; text-decoration: none; }
+
+  .gh-avatar-small {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 1px solid #30363d;
+  }
+
+  /* ── Profile Tab Nav ── */
+  .tab-nav {
+    background: #0d1117;
+    border-bottom: 1px solid #30363d;
+    padding: 0 32px;
+    display: flex;
+    gap: 4px;
+  }
+
+  .tab-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    font-size: 14px; color: #e6edf3;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+
+  .tab-item:hover { border-bottom-color: #8b949e; }
+  .tab-item.active { font-weight: 600; border-bottom-color: #f78166; }
+
+  .tab-item svg { fill: #8b949e; }
+  .tab-item.active svg { fill: #e6edf3; }
+
+  .tab-counter {
+    background: #30363d;
+    border-radius: 10px;
+    padding: 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e6edf3;
+  }
+
+  /* ── Main Layout ── */
+  .main-layout {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    display: grid;
+    grid-template-columns: 296px 1fr;
+    gap: 24px;
+  }
+
+  /* ── Sidebar (Profile) ── */
+  .sidebar {}
+
+  .avatar-wrap {
+    position: relative;
+    width: 296px;
+    margin-bottom: 16px;
+  }
+
+  .avatar-wrap img {
+    width: 296px; height: 296px;
+    border-radius: 50%;
+    border: 1px solid #30363d;
+  }
+
+  .status-badge {
+    position: absolute; bottom: 14px; right: 14px;
+    width: 38px; height: 38px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: default;
+  }
+
+  .profile-name {
+    font-size: 26px;
+    font-weight: 600;
+    color: #e6edf3;
+    line-height: 1.25;
+  }
+
+  .profile-login {
+    font-size: 20px;
+    font-weight: 300;
+    color: #8b949e;
+    line-height: 1.25;
+  }
+
+  .profile-bio {
+    margin-top: 12px;
+    font-size: 14px;
     color: #e6edf3;
     line-height: 1.5;
   }
 
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 40px 24px;
-  }
-
-  /* Header */
-  .header {
+  .edit-btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 5px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e6edf3;
+    background: #21262d;
+    border: 1px solid #363b42;
+    border-radius: 6px;
+    cursor: default;
     text-align: center;
-    margin-bottom: 36px;
   }
 
-  .header h1 {
-    font-size: 28pt;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: #fff;
+  .profile-meta {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
-  .header .subtitle {
-    font-size: 13pt;
+  .meta-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: #8b949e;
+  }
+
+  .meta-item svg { fill: #8b949e; flex-shrink: 0; }
+  .meta-item a { color: #58a6ff; }
+
+  .follow-stats {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
     color: #8b949e;
-    margin-top: 4px;
   }
 
-  .header .period {
-    font-size: 10pt;
-    color: #58a6ff;
-    margin-top: 8px;
+  .follow-stats svg { fill: #8b949e; }
+  .follow-stats strong { color: #e6edf3; font-weight: 600; }
+
+  .badge-section {
+    margin-top: 20px;
+    border-top: 1px solid #21262d;
+    padding-top: 16px;
+  }
+
+  .badge-title {
+    font-size: 16px;
     font-weight: 600;
+    color: #e6edf3;
+    margin-bottom: 8px;
   }
 
-  .header .note {
-    font-size: 9pt;
-    color: #6e7681;
-    margin-top: 6px;
-    font-style: italic;
+  .orgs {
+    display: flex;
+    gap: 6px;
   }
 
-  /* Stats Cards */
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .stat-card {
-    background: #161b22;
+  .org-avatar {
+    width: 32px; height: 32px;
+    border-radius: 6px;
     border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
+    background: #161b22;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #8b949e;
+    cursor: default;
   }
 
-  .stat-card .number {
-    font-size: 32pt;
-    font-weight: 800;
-    color: #58a6ff;
-    line-height: 1.1;
-  }
+  /* ── Content Area ── */
+  .content {}
 
-  .stat-card .number.green { color: #3fb950; }
-  .stat-card .number.purple { color: #bc8cff; }
-  .stat-card .number.orange { color: #d29922; }
-
-  .stat-card .label {
-    font-size: 9.5pt;
+  /* Pinned Repos */
+  .pinned-header {
+    font-size: 16px;
     color: #8b949e;
-    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+
+  .pinned-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .repo-card {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 132px;
+  }
+
+  .repo-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .repo-card-header svg { fill: #8b949e; flex-shrink: 0; }
+
+  .repo-card-name {
+    font-size: 14px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #58a6ff;
   }
 
-  /* Section */
-  .section {
-    margin-bottom: 28px;
+  .repo-card-badge {
+    font-size: 12px;
+    color: #8b949e;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 0 7px;
+    margin-left: auto;
   }
 
-  .section-title {
-    font-size: 14pt;
-    font-weight: 700;
-    color: #fff;
-    border-bottom: 2px solid #30363d;
-    padding-bottom: 6px;
+  .repo-card-desc {
+    font-size: 12px;
+    color: #8b949e;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .repo-card-footer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #8b949e;
+  }
+
+  .lang-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .lang-dot.js { background: #f1e05a; }
+  .lang-dot.ts { background: #3178c6; }
+  .lang-dot.py { background: #3572A5; }
+  .lang-dot.html { background: #e34c26; }
+
+  .repo-card-footer span { display: flex; align-items: center; gap: 4px; }
+  .repo-card-footer svg { fill: #8b949e; }
+
+  /* ── Contribution Graph ── */
+  .contrib-section {
+    margin-top: 8px;
+  }
+
+  .contrib-header {
+    font-size: 16px;
+    color: #e6edf3;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .contrib-header strong { font-weight: 600; }
+
+  .graph-card {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px 20px;
+    overflow-x: auto;
+  }
+
+  .graph-label-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0;
+    margin-bottom: 6px;
+    padding-left: 36px;
+    font-size: 11px;
+    color: #8b949e;
+  }
+
+  .graph-label-row span {
+    width: calc(100% / 12);
+    min-width: 52px;
+  }
+
+  .graph-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .day-labels {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding-right: 8px;
+    font-size: 11px;
+    color: #8b949e;
+  }
+
+  .day-labels span {
+    height: 13px;
+    line-height: 13px;
+  }
+
+  .graph-grid {
+    display: flex;
+    gap: 3px;
+  }
+
+  .graph-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .graph-cell {
+    width: 13px; height: 13px;
+    border-radius: 2px;
+    background: #161b22;
+  }
+
+  .graph-cell.l1 { background: #0e4429; }
+  .graph-cell.l2 { background: #006d32; }
+  .graph-cell.l3 { background: #26a641; }
+  .graph-cell.l4 { background: #39d353; }
+
+  .graph-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 11px;
+    color: #8b949e;
+  }
+
+  .graph-legend .graph-cell {
+    width: 11px; height: 11px;
+  }
+
+  /* ── Contribution Activity ── */
+  .activity-section {
+    margin-top: 24px;
+  }
+
+  .activity-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: #e6edf3;
     margin-bottom: 16px;
   }
 
-  /* Yearly Breakdown */
-  .year-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  .activity-month {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 24px;
   }
 
-  .year-card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 18px;
+  .activity-month::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 0; bottom: 0;
+    width: 2px;
+    background: #30363d;
   }
 
-  .year-card h3 {
-    font-size: 12pt;
-    color: #58a6ff;
-    margin-bottom: 10px;
-    font-weight: 700;
-  }
-
-  .year-card .row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 9.5pt;
-    padding: 4px 0;
-    border-bottom: 1px solid #21262d;
-  }
-
-  .year-card .row:last-child { border-bottom: none; }
-  .year-card .row .val { color: #e6edf3; font-weight: 700; }
-  .year-card .row .lbl { color: #8b949e; }
-
-  /* Repo Breakdown */
-  .repo-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .repo-item {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 14px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .repo-item .name {
-    font-size: 10pt;
+  .month-label {
+    font-size: 14px;
     font-weight: 600;
     color: #e6edf3;
+    background: #0d1117;
+    position: relative;
+    margin-bottom: 12px;
+    padding: 2px 0;
   }
 
-  .repo-item .commits {
-    font-size: 10pt;
-    font-weight: 800;
-    color: #3fb950;
+  .month-label::before {
+    content: '';
+    position: absolute;
+    left: -23px; top: 7px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #30363d;
   }
 
-  .repo-item .bar-bg {
-    flex: 1;
-    height: 6px;
-    background: #21262d;
-    border-radius: 3px;
-    margin: 0 14px;
-    overflow: hidden;
-  }
-
-  .repo-item .bar-fill {
-    height: 100%;
-    background: #3fb950;
-    border-radius: 3px;
-  }
-
-  /* Tech Stack */
-  .tech-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tech-tag {
-    background: #1f2937;
+  .activity-item {
+    background: #161b22;
     border: 1px solid #30363d;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 9pt;
-    font-weight: 600;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .activity-item .act-title {
     color: #e6edf3;
+    margin-bottom: 4px;
   }
 
-  .tech-tag.primary { border-color: #58a6ff; color: #58a6ff; }
-  .tech-tag.ai { border-color: #bc8cff; color: #bc8cff; }
-
-  /* Merge Rate */
-  .merge-bar-container {
-    margin-top: 16px;
-  }
-
-  .merge-bar-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 9.5pt;
+  .activity-item .act-detail {
     color: #8b949e;
-    margin-bottom: 6px;
+    font-size: 13px;
   }
 
-  .merge-bar {
-    height: 12px;
-    background: #21262d;
+  .activity-item .act-detail a { color: #58a6ff; }
+
+  /* ── Stats Cards Overlay ── */
+  .stats-banner {
+    background: #161b22;
+    border: 1px solid #30363d;
     border-radius: 6px;
-    overflow: hidden;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
   }
 
-  .merge-bar .fill {
-    height: 100%;
-    background: linear-gradient(90deg, #3fb950, #58a6ff);
-    border-radius: 6px;
-  }
-
-  /* Footer */
-  .footer {
+  .stats-banner .sb-item {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
+    padding: 8px;
+  }
+
+  .stats-banner .sb-item:not(:last-child) {
+    border-right: 1px solid #30363d;
+  }
+
+  .sb-number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e6edf3;
+    line-height: 1.2;
+  }
+
+  .sb-number.green { color: #3fb950; }
+  .sb-number.blue { color: #58a6ff; }
+  .sb-number.purple { color: #bc8cff; }
+  .sb-number.orange { color: #d29922; }
+
+  .sb-label {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 2px;
+  }
+
+  /* ── Year Selector ── */
+  .year-list {
+    margin-top: 24px;
     border-top: 1px solid #21262d;
-    font-size: 9pt;
-    color: #6e7681;
+    padding-top: 16px;
   }
 
-  .footer a {
-    color: #58a6ff;
-    text-decoration: none;
+  .year-link {
+    display: block;
+    padding: 6px 16px;
+    font-size: 14px;
+    color: #8b949e;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    margin-bottom: 2px;
+    cursor: default;
   }
 
-  .footer a:hover { text-decoration: underline; }
-
-  /* Responsive */
-  @media (max-width: 700px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .year-grid { grid-template-columns: 1fr; }
-    .repo-list { grid-template-columns: 1fr; }
+  .year-link.active {
+    color: #e6edf3;
+    font-weight: 600;
+    background: #1f6feb22;
+    border-color: #1f6feb44;
   }
 
-  /* Print */
-  @media print {
-    body { background: #fff; color: #1a1a1a; }
-    .stat-card, .year-card, .repo-item { border-color: #ddd; background: #f6f8fa; }
-    .stat-card .number { color: #0969da; }
-    .stat-card .number.green { color: #1a7f37; }
-    .stat-card .number.purple { color: #8250df; }
-    .stat-card .number.orange { color: #9a6700; }
-    .section-title { color: #1a1a1a; border-color: #d0d7de; }
-    .year-card h3 { color: #0969da; }
-    .tech-tag { background: #f6f8fa; border-color: #d0d7de; color: #1a1a1a; }
-    .tech-tag.primary { color: #0969da; border-color: #0969da; }
-    .tech-tag.ai { color: #8250df; border-color: #8250df; }
+  /* ── Responsive ── */
+  @media (max-width: 960px) {
+    .main-layout {
+      grid-template-columns: 1fr;
+      padding: 16px;
+    }
+    .avatar-wrap img { width: 200px; height: 200px; }
+    .avatar-wrap { width: 200px; margin: 0 auto 16px; }
+    .pinned-grid { grid-template-columns: 1fr; }
+    .stats-banner { grid-template-columns: repeat(2, 1fr); }
+    .gh-header { padding: 0 16px; }
+    .tab-nav { padding: 0 16px; overflow-x: auto; }
   }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="header">
-    <h1>SAAD SOHAIL</h1>
-    <div class="subtitle">GitHub Engineering Contributions @ Obenan</div>
-    <div class="period">May 2023 — March 2026 (Private Organization)</div>
-    <div class="note">Stats sourced from private GitHub organization (obenan-dashboard) via GitHub API</div>
+<!-- ═══════ GitHub Header Nav ═══════ -->
+<div class="gh-header">
+  <div class="gh-logo">
+    <svg height="32" viewBox="0 0 16 16" width="32"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
   </div>
-
-  <!-- Top-Level Stats -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="number green">4,542</div>
-      <div class="label">Total Commits</div>
-    </div>
-    <div class="stat-card">
-      <div class="number">479</div>
-      <div class="label">Pull Requests</div>
-    </div>
-    <div class="stat-card">
-      <div class="number purple">580</div>
-      <div class="label">PRs Reviewed</div>
-    </div>
-    <div class="stat-card">
-      <div class="number orange">69</div>
-      <div class="label">Issues Created</div>
-    </div>
+  <input class="gh-search" type="text" placeholder="Type / to search" disabled>
+  <div class="gh-nav-links">
+    <a>Pull requests</a>
+    <a>Issues</a>
+    <a>Marketplace</a>
+    <a>Explore</a>
   </div>
-
-  <!-- Merge Rate -->
-  <div class="section">
-    <div class="section-title">Pull Request Merge Rate</div>
-    <div class="merge-bar-container">
-      <div class="merge-bar-label">
-        <span>449 Merged / 479 Total</span>
-        <span style="color: #3fb950; font-weight: 700;">93.7%</span>
-      </div>
-      <div class="merge-bar">
-        <div class="fill" style="width: 93.7%;"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Yearly Breakdown -->
-  <div class="section">
-    <div class="section-title">Yearly Breakdown</div>
-    <div class="year-grid">
-      <div class="year-card">
-        <h3>2023 (May–Dec)</h3>
-        <div class="row"><span class="lbl">Pull Requests</span><span class="val">119</span></div>
-        <div class="row"><span class="lbl">PRs Reviewed</span><span class="val">45</span></div>
-      </div>
-      <div class="year-card">
-        <h3>2024</h3>
-        <div class="row"><span class="lbl">Pull Requests</span><span class="val">114</span></div>
-        <div class="row"><span class="lbl">PRs Reviewed</span><span class="val">74</span></div>
-      </div>
-      <div class="year-card">
-        <h3>2025–2026 (Jan–Mar)</h3>
-        <div class="row"><span class="lbl">Pull Requests</span><span class="val">246</span></div>
-        <div class="row"><span class="lbl">PRs Reviewed</span><span class="val">461</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Repo Breakdown -->
-  <div class="section">
-    <div class="section-title">Commits by Repository</div>
-    <div class="repo-list">
-      <div class="repo-item">
-        <span class="name">obenan-api</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
-        <span class="commits">3,989</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">whole-brain</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 4.6%;"></div></div>
-        <span class="commits">185</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">obenan-listing-api</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 3.6%;"></div></div>
-        <span class="commits">142</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">rough-report</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 2.5%;"></div></div>
-        <span class="commits">98</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">landing-cms-v2</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 1.7%;"></div></div>
-        <span class="commits">67</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">obenan-frontend</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 0.9%;"></div></div>
-        <span class="commits">36</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">admin-dashboard</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 0.6%;"></div></div>
-        <span class="commits">22</span>
-      </div>
-      <div class="repo-item">
-        <span class="name">Digital-Twin-Profile</span>
-        <div class="bar-bg"><div class="bar-fill" style="width: 0.1%;"></div></div>
-        <span class="commits">3</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tech Stack -->
-  <div class="section">
-    <div class="section-title">Tech Stack Used</div>
-    <div class="tech-tags">
-      <span class="tech-tag primary">Node.js</span>
-      <span class="tech-tag primary">Express.js</span>
-      <span class="tech-tag primary">NestJS</span>
-      <span class="tech-tag primary">PostgreSQL</span>
-      <span class="tech-tag primary">MongoDB</span>
-      <span class="tech-tag primary">Sequelize</span>
-      <span class="tech-tag primary">React.js</span>
-      <span class="tech-tag primary">Next.js</span>
-      <span class="tech-tag">TypeScript</span>
-      <span class="tech-tag">Redis</span>
-      <span class="tech-tag">BullMQ</span>
-      <span class="tech-tag">Socket.IO</span>
-      <span class="tech-tag">AWS (EC2, S3, Lambda, VPC)</span>
-      <span class="tech-tag">Docker</span>
-      <span class="tech-tag">Stripe</span>
-      <span class="tech-tag">SendGrid</span>
-      <span class="tech-tag ai">Claude AI</span>
-      <span class="tech-tag ai">OpenAI GPT-4</span>
-      <span class="tech-tag ai">Gemini</span>
-      <span class="tech-tag ai">RAG Architecture</span>
-      <span class="tech-tag">GitHub Actions</span>
-      <span class="tech-tag">Sentry</span>
-      <span class="tech-tag">CodeClimate</span>
-    </div>
-  </div>
-
-  <div class="footer">
-    <p>
-      <a href="https://rishat5081.github.io/resume/SAAD_SOHAIL_Resume.html">View Full Resume</a> &middot;
-      <a href="https://github.com/rishat5081">github.com/rishat5081</a> &middot;
-      <a href="https://www.linkedin.com/in/dev-saad-sohail/">LinkedIn</a>
-    </p>
-    <p style="margin-top: 6px;">Last updated: March 2026 &middot; Data sourced from GitHub API</p>
-  </div>
-
+  <img class="gh-avatar-small" src="https://avatars.githubusercontent.com/u/133629452?v=4" alt="">
 </div>
+
+<!-- ═══════ Tab Navigation ═══════ -->
+<div class="tab-nav">
+  <div class="tab-item active">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path></svg>
+    Overview
+  </div>
+  <div class="tab-item">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+    Repositories
+    <span class="tab-counter">17</span>
+  </div>
+  <div class="tab-item">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25V5Zm-8 10H1.75a.25.25 0 0 1-.25-.25V6.5H5v8Z"></path></svg>
+    Projects
+  </div>
+  <div class="tab-item">
+    <svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+    Stars
+  </div>
+</div>
+
+<!-- ═══════ Main Content ═══════ -->
+<div class="main-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <img src="https://avatars.githubusercontent.com/u/133629452?v=4" alt="saad-obenan">
+      <div class="status-badge">💻</div>
+    </div>
+
+    <div class="profile-name">Saad Sohail</div>
+    <div class="profile-login">saad-obenan</div>
+
+    <div class="profile-bio">
+      Senior Full-Stack Engineer @ Obenan · Building scalable SaaS platforms with Node.js, PostgreSQL, AWS & AI/LLMs · 4,500+ commits in private org
+    </div>
+
+    <div class="edit-btn">Edit profile</div>
+
+    <div class="follow-stats">
+      <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4.001 4.001 0 0 0-6.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 4.6 8.049 3.5 3.5 0 0 1 2 5.5ZM5.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm6.051.28a.75.75 0 0 1 .965-.18 3.5 3.5 0 0 1 0 5.8.75.75 0 0 1-.785-1.28 2 2 0 0 0 0-3.06.75.75 0 0 1-.18-.965v-.315Z"></path></svg>
+      <strong>1</strong> follower · <strong>1</strong> following
+    </div>
+
+    <div class="profile-meta">
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75Zm4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75ZM7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75ZM7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5Z"></path></svg>
+        Obenan
+      </div>
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192 0ZM8 1a5 5 0 0 0-3.536 8.536L8 13.07l3.536-3.534A5 5 0 0 0 8 1Zm0 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path></svg>
+        Lahore, Pakistan
+      </div>
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"></path></svg>
+        <a href="mailto:engr.saadsohail@gmail.com">engr.saadsohail@gmail.com</a>
+      </div>
+      <div class="meta-item">
+        <svg width="16" height="16" viewBox="0 0 16 16"><path d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25Zm-.025 5.475a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 1 1-2.83-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25Z"></path></svg>
+        <a href="https://www.linkedin.com/in/dev-saad-sohail/">linkedin.com/in/dev-saad-sohail</a>
+      </div>
+    </div>
+
+    <div class="badge-section">
+      <div class="badge-title">Organizations</div>
+      <div class="orgs">
+        <div class="org-avatar" title="obenan-dashboard">OB</div>
+      </div>
+    </div>
+
+    <!-- Year Nav -->
+    <div class="year-list">
+      <div class="year-link active">2025 – 2026</div>
+      <div class="year-link">2024</div>
+      <div class="year-link">2023</div>
+    </div>
+  </aside>
+
+  <!-- ── Content ── -->
+  <div class="content">
+
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+      <div class="sb-item">
+        <div class="sb-number green" data-target="4542">0</div>
+        <div class="sb-label">Commits</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-number blue" data-target="479">0</div>
+        <div class="sb-label">Pull Requests</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-number purple" data-target="580">0</div>
+        <div class="sb-label">Code Reviews</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-number orange" data-target="69">0</div>
+        <div class="sb-label">Issues</div>
+      </div>
+    </div>
+
+    <!-- Pinned Repos -->
+    <div class="pinned-header">Pinned</div>
+    <div class="pinned-grid">
+      <div class="repo-card">
+        <div>
+          <div class="repo-card-header">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+            <span class="repo-card-name">obenan-api</span>
+            <span class="repo-card-badge">Private</span>
+          </div>
+          <div class="repo-card-desc">Core SaaS API — multi-tenant platform with 100+ Sequelize models, 400+ migrations, BullMQ pipelines, Stripe billing, AI integrations</div>
+        </div>
+        <div class="repo-card-footer">
+          <span><span class="lang-dot js"></span> JavaScript</span>
+          <span><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg> 3,989 commits</span>
+        </div>
+      </div>
+
+      <div class="repo-card">
+        <div>
+          <div class="repo-card-header">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+            <span class="repo-card-name">whole-brain</span>
+            <span class="repo-card-badge">Private</span>
+          </div>
+          <div class="repo-card-desc">Next-gen monorepo — Dashboard v2, AI agents, LangGraph multi-agent systems, and full-stack TypeScript services</div>
+        </div>
+        <div class="repo-card-footer">
+          <span><span class="lang-dot ts"></span> TypeScript</span>
+          <span><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg> 185 commits</span>
+        </div>
+      </div>
+
+      <div class="repo-card">
+        <div>
+          <div class="repo-card-header">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+            <span class="repo-card-name">obenan-listing-api</span>
+            <span class="repo-card-badge">Private</span>
+          </div>
+          <div class="repo-card-desc">Business listing sync engine — Google Business Profile integration, automated location management, and insights aggregation</div>
+        </div>
+        <div class="repo-card-footer">
+          <span><span class="lang-dot js"></span> JavaScript</span>
+          <span><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg> 142 commits</span>
+        </div>
+      </div>
+
+      <div class="repo-card">
+        <div>
+          <div class="repo-card-header">
+            <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
+            <span class="repo-card-name">obenan-frontend</span>
+            <span class="repo-card-badge">Private</span>
+          </div>
+          <div class="repo-card-desc">React dashboard — business analytics, review management UI, multi-location management, and Stripe subscription portal</div>
+        </div>
+        <div class="repo-card-footer">
+          <span><span class="lang-dot js"></span> JavaScript</span>
+          <span><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg> 36 commits</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contribution Graph -->
+    <div class="contrib-section">
+      <div class="contrib-header"><strong>4,542</strong> contributions in the last year</div>
+
+      <div class="graph-card">
+        <div class="graph-label-row">
+          <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+        </div>
+        <div class="graph-body">
+          <div class="day-labels">
+            <span style="visibility:hidden;">.</span>
+            <span>Mon</span>
+            <span style="visibility:hidden;">.</span>
+            <span>Wed</span>
+            <span style="visibility:hidden;">.</span>
+            <span>Fri</span>
+            <span style="visibility:hidden;">.</span>
+          </div>
+          <div class="graph-grid" id="contribGrid"></div>
+        </div>
+        <div class="graph-legend">
+          Less
+          <div class="graph-cell"></div>
+          <div class="graph-cell l1"></div>
+          <div class="graph-cell l2"></div>
+          <div class="graph-cell l3"></div>
+          <div class="graph-cell l4"></div>
+          More
+        </div>
+      </div>
+    </div>
+
+    <!-- Contribution Activity -->
+    <div class="activity-section">
+      <div class="activity-title">Contribution activity</div>
+
+      <div class="activity-month">
+        <div class="month-label">March 2026</div>
+        <div class="activity-item">
+          <div class="act-title">Created 87 commits in 3 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/obenan-api</a> — 52 commits<br>
+            <a>obenan-dashboard/whole-brain</a> — 28 commits<br>
+            <a>obenan-dashboard/obenan-listing-api</a> — 7 commits
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-title">Opened 24 pull requests in 2 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/whole-brain</a> — 16 pull requests<br>
+            <a>obenan-dashboard/obenan-api</a> — 8 pull requests
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-title">Reviewed 48 pull requests in 2 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/whole-brain</a> — 32 reviews<br>
+            <a>obenan-dashboard/obenan-api</a> — 16 reviews
+          </div>
+        </div>
+      </div>
+
+      <div class="activity-month">
+        <div class="month-label">February 2026</div>
+        <div class="activity-item">
+          <div class="act-title">Created 112 commits in 4 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/obenan-api</a> — 68 commits<br>
+            <a>obenan-dashboard/whole-brain</a> — 24 commits<br>
+            <a>obenan-dashboard/landing-cms-v2</a> — 12 commits<br>
+            <a>obenan-dashboard/obenan-listing-api</a> — 8 commits
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-title">Opened 31 pull requests in 3 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/obenan-api</a> — 18 pull requests<br>
+            <a>obenan-dashboard/whole-brain</a> — 9 pull requests<br>
+            <a>obenan-dashboard/landing-cms-v2</a> — 4 pull requests
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-title">Reviewed 55 pull requests in 2 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/whole-brain</a> — 38 reviews<br>
+            <a>obenan-dashboard/obenan-api</a> — 17 reviews
+          </div>
+        </div>
+      </div>
+
+      <div class="activity-month">
+        <div class="month-label">January 2026</div>
+        <div class="activity-item">
+          <div class="act-title">Created 95 commits in 3 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/obenan-api</a> — 61 commits<br>
+            <a>obenan-dashboard/whole-brain</a> — 22 commits<br>
+            <a>obenan-dashboard/rough-report</a> — 12 commits
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="act-title">Opened 28 pull requests in 2 repositories</div>
+          <div class="act-detail">
+            <a>obenan-dashboard/obenan-api</a> — 20 pull requests<br>
+            <a>obenan-dashboard/whole-brain</a> — 8 pull requests
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── Animated Number Counters ──
+document.querySelectorAll('.sb-number[data-target]').forEach(el => {
+  const target = parseInt(el.dataset.target);
+  const duration = 1500;
+  const start = performance.now();
+
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(target * eased).toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target.toLocaleString();
+  }
+  requestAnimationFrame(tick);
+});
+
+// ── Generate Contribution Heatmap ──
+(function() {
+  const grid = document.getElementById('contribGrid');
+  const weeks = 52;
+
+  // Seed a deterministic "random" based on week/day for consistency
+  function seededRandom(seed) {
+    let x = Math.sin(seed * 127.1) * 43758.5453;
+    return x - Math.floor(x);
+  }
+
+  // Define contribution intensity patterns by month (0=Apr..11=Mar)
+  // Higher weight = more active. Based on real PR data.
+  const monthWeights = [
+    0.5,  // Apr 2025
+    0.6,  // May
+    0.7,  // Jun
+    0.65, // Jul
+    0.7,  // Aug
+    0.75, // Sep
+    0.8,  // Oct
+    0.85, // Nov
+    0.7,  // Dec
+    0.95, // Jan 2026
+    1.0,  // Feb 2026
+    0.9   // Mar 2026
+  ];
+
+  for (let w = 0; w < weeks; w++) {
+    const col = document.createElement('div');
+    col.className = 'graph-col';
+    const monthIndex = Math.floor((w / weeks) * 12);
+    const weight = monthWeights[monthIndex];
+
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'graph-cell';
+      const r = seededRandom(w * 7 + d + 42);
+
+      // Weekend (d=0 Sun, d=6 Sat) → less activity
+      const isWeekend = (d === 0 || d === 6);
+      const threshold = isWeekend ? 0.6 : 0.15;
+
+      if (r > threshold) {
+        const intensity = r * weight;
+        if (intensity > 0.85) cell.className += ' l4';
+        else if (intensity > 0.65) cell.className += ' l3';
+        else if (intensity > 0.45) cell.className += ' l2';
+        else if (intensity > 0.2) cell.className += ' l1';
+      }
+      col.appendChild(cell);
+    }
+    grid.appendChild(col);
+  }
+})();
+</script>
+
 </body>
 </html>
