@@ -633,9 +633,9 @@
 
     <!-- Year Nav -->
     <div class="year-list">
-      <a href="https://github.com/saad-obenan?tab=overview&from=2025-01-01&to=2026-03-24" class="year-link active" target="_blank">2025 – 2026</a>
-      <a href="https://github.com/saad-obenan?tab=overview&from=2024-01-01&to=2024-12-31" class="year-link" target="_blank">2024</a>
-      <a href="https://github.com/saad-obenan?tab=overview&from=2023-05-01&to=2023-12-31" class="year-link" target="_blank">2023</a>
+      <a href="#" class="year-link active" data-year="2025-2026" onclick="switchYear(this, '2025-2026'); return false;">2025 – 2026</a>
+      <a href="#" class="year-link" data-year="2024" onclick="switchYear(this, '2024'); return false;">2024</a>
+      <a href="#" class="year-link" data-year="2023" onclick="switchYear(this, '2023'); return false;">2023</a>
     </div>
   </aside>
 
@@ -643,21 +643,21 @@
   <div class="content">
 
     <!-- Stats Banner -->
-    <div class="stats-banner">
+    <div class="stats-banner" id="statsBanner">
       <div class="sb-item">
-        <div class="sb-number green" data-target="4542">0</div>
+        <div class="sb-number green" id="statCommits" data-target="4542">0</div>
         <div class="sb-label">Commits</div>
       </div>
       <div class="sb-item">
-        <div class="sb-number blue" data-target="479">0</div>
+        <div class="sb-number blue" id="statPRs" data-target="479">0</div>
         <div class="sb-label">Pull Requests</div>
       </div>
       <div class="sb-item">
-        <div class="sb-number purple" data-target="580">0</div>
+        <div class="sb-number purple" id="statReviews" data-target="580">0</div>
         <div class="sb-label">Code Reviews</div>
       </div>
       <div class="sb-item">
-        <div class="sb-number orange" data-target="69">0</div>
+        <div class="sb-number orange" id="statIssues" data-target="69">0</div>
         <div class="sb-label">Issues</div>
       </div>
     </div>
@@ -669,7 +669,7 @@
         <div>
           <div class="repo-card-header">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-            <a class="repo-card-name" href="https://github.com/saad-obenan" target="_blank">obenan-api</a>
+            <a class="repo-card-name" href="https://github.com/obenan-dashboard/obenan-api" target="_blank">obenan-api</a>
             <span class="repo-card-badge">Private</span>
           </div>
           <div class="repo-card-desc">Core SaaS API — multi-tenant platform with 100+ Sequelize models, 400+ migrations, BullMQ pipelines, Stripe billing, AI integrations</div>
@@ -684,7 +684,7 @@
         <div>
           <div class="repo-card-header">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-            <a class="repo-card-name" href="https://github.com/saad-obenan" target="_blank">whole-brain</a>
+            <a class="repo-card-name" href="https://github.com/obenan-dashboard/whole-brain" target="_blank">whole-brain</a>
             <span class="repo-card-badge">Private</span>
           </div>
           <div class="repo-card-desc">Next-gen monorepo — Dashboard v2, AI agents, LangGraph multi-agent systems, and full-stack TypeScript services</div>
@@ -699,7 +699,7 @@
         <div>
           <div class="repo-card-header">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-            <a class="repo-card-name" href="https://github.com/saad-obenan" target="_blank">obenan-listing-api</a>
+            <a class="repo-card-name" href="https://github.com/obenan-dashboard/obenan-listing-api" target="_blank">obenan-listing-api</a>
             <span class="repo-card-badge">Private</span>
           </div>
           <div class="repo-card-desc">Business listing sync engine — Google Business Profile integration, automated location management, and insights aggregation</div>
@@ -714,7 +714,7 @@
         <div>
           <div class="repo-card-header">
             <svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-            <a class="repo-card-name" href="https://github.com/saad-obenan" target="_blank">obenan-frontend</a>
+            <a class="repo-card-name" href="https://github.com/obenan-dashboard/obenan-frontend" target="_blank">obenan-frontend</a>
             <span class="repo-card-badge">Private</span>
           </div>
           <div class="repo-card-desc">React dashboard — business analytics, review management UI, multi-location management, and Stripe subscription portal</div>
@@ -728,7 +728,7 @@
 
     <!-- Contribution Graph -->
     <div class="contrib-section">
-      <div class="contrib-header"><strong>4,542</strong> contributions in the last year</div>
+      <div class="contrib-header" id="contribHeader"><strong>4,542</strong> contributions in the last year</div>
 
       <div class="graph-card">
         <div class="graph-label-row">
@@ -761,146 +761,259 @@
     <!-- Contribution Activity -->
     <div class="activity-section">
       <div class="activity-title">Contribution activity</div>
-
-      <div class="activity-month">
-        <div class="month-label">March 2026</div>
-        <div class="activity-item">
-          <div class="act-title">Created 87 commits in 3 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/obenan-api</a> — 52 commits<br>
-            <a>obenan-dashboard/whole-brain</a> — 28 commits<br>
-            <a>obenan-dashboard/obenan-listing-api</a> — 7 commits
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="act-title">Opened 24 pull requests in 2 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/whole-brain</a> — 16 pull requests<br>
-            <a>obenan-dashboard/obenan-api</a> — 8 pull requests
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="act-title">Reviewed 48 pull requests in 2 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/whole-brain</a> — 32 reviews<br>
-            <a>obenan-dashboard/obenan-api</a> — 16 reviews
-          </div>
-        </div>
-      </div>
-
-      <div class="activity-month">
-        <div class="month-label">February 2026</div>
-        <div class="activity-item">
-          <div class="act-title">Created 112 commits in 4 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/obenan-api</a> — 68 commits<br>
-            <a>obenan-dashboard/whole-brain</a> — 24 commits<br>
-            <a>obenan-dashboard/landing-cms-v2</a> — 12 commits<br>
-            <a>obenan-dashboard/obenan-listing-api</a> — 8 commits
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="act-title">Opened 31 pull requests in 3 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/obenan-api</a> — 18 pull requests<br>
-            <a>obenan-dashboard/whole-brain</a> — 9 pull requests<br>
-            <a>obenan-dashboard/landing-cms-v2</a> — 4 pull requests
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="act-title">Reviewed 55 pull requests in 2 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/whole-brain</a> — 38 reviews<br>
-            <a>obenan-dashboard/obenan-api</a> — 17 reviews
-          </div>
-        </div>
-      </div>
-
-      <div class="activity-month">
-        <div class="month-label">January 2026</div>
-        <div class="activity-item">
-          <div class="act-title">Created 95 commits in 3 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/obenan-api</a> — 61 commits<br>
-            <a>obenan-dashboard/whole-brain</a> — 22 commits<br>
-            <a>obenan-dashboard/rough-report</a> — 12 commits
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="act-title">Opened 28 pull requests in 2 repositories</div>
-          <div class="act-detail">
-            <a>obenan-dashboard/obenan-api</a> — 20 pull requests<br>
-            <a>obenan-dashboard/whole-brain</a> — 8 pull requests
-          </div>
-        </div>
-      </div>
-
+      <div id="activityContent"></div>
     </div>
 
   </div>
 </div>
 
 <script>
-// ── Animated Number Counters ──
-document.querySelectorAll('.sb-number[data-target]').forEach(el => {
-  const target = parseInt(el.dataset.target);
-  const duration = 1500;
-  const start = performance.now();
+// ── Year Data (real stats from GitHub API) ──
+const yearData = {
+  '2025-2026': {
+    commits: 4542, prs: 246, reviews: 461, issues: 32,
+    contribLabel: '4,542 contributions in the last year',
+    months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    monthWeights: [0.95,1.0,0.9,0.5,0.6,0.7,0.65,0.7,0.75,0.8,0.85,0.7],
+    seed: 42,
+    activity: [
+      { month: 'March 2026', items: [
+        { title: 'Created 87 commits in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '52 commits'],
+          ['obenan-dashboard/whole-brain', '28 commits'],
+          ['obenan-dashboard/obenan-listing-api', '7 commits']
+        ]},
+        { title: 'Opened 24 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/whole-brain', '16 pull requests'],
+          ['obenan-dashboard/obenan-api', '8 pull requests']
+        ]},
+        { title: 'Reviewed 48 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/whole-brain', '32 reviews'],
+          ['obenan-dashboard/obenan-api', '16 reviews']
+        ]}
+      ]},
+      { month: 'February 2026', items: [
+        { title: 'Created 112 commits in 4 repositories', details: [
+          ['obenan-dashboard/obenan-api', '68 commits'],
+          ['obenan-dashboard/whole-brain', '24 commits'],
+          ['obenan-dashboard/landing-cms-v2', '12 commits'],
+          ['obenan-dashboard/obenan-listing-api', '8 commits']
+        ]},
+        { title: 'Opened 31 pull requests in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '18 pull requests'],
+          ['obenan-dashboard/whole-brain', '9 pull requests'],
+          ['obenan-dashboard/landing-cms-v2', '4 pull requests']
+        ]},
+        { title: 'Reviewed 55 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/whole-brain', '38 reviews'],
+          ['obenan-dashboard/obenan-api', '17 reviews']
+        ]}
+      ]},
+      { month: 'January 2026', items: [
+        { title: 'Created 95 commits in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '61 commits'],
+          ['obenan-dashboard/whole-brain', '22 commits'],
+          ['obenan-dashboard/rough-report', '12 commits']
+        ]},
+        { title: 'Opened 28 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '20 pull requests'],
+          ['obenan-dashboard/whole-brain', '8 pull requests']
+        ]}
+      ]},
+      { month: 'December 2025', items: [
+        { title: 'Created 78 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '58 commits'],
+          ['obenan-dashboard/obenan-listing-api', '20 commits']
+        ]},
+        { title: 'Opened 18 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '14 pull requests'],
+          ['obenan-dashboard/obenan-listing-api', '4 pull requests']
+        ]}
+      ]},
+      { month: 'November 2025', items: [
+        { title: 'Created 91 commits in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '65 commits'],
+          ['obenan-dashboard/whole-brain', '18 commits'],
+          ['obenan-dashboard/rough-report', '8 commits']
+        ]},
+        { title: 'Reviewed 42 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/whole-brain', '28 reviews'],
+          ['obenan-dashboard/obenan-api', '14 reviews']
+        ]}
+      ]}
+    ]
+  },
+  '2024': {
+    commits: 1680, prs: 114, reviews: 74, issues: 22,
+    contribLabel: '1,680 contributions in 2024',
+    months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    monthWeights: [0.6,0.65,0.7,0.7,0.75,0.8,0.7,0.65,0.7,0.75,0.8,0.7],
+    seed: 99,
+    activity: [
+      { month: 'December 2024', items: [
+        { title: 'Created 145 commits in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '102 commits'],
+          ['obenan-dashboard/obenan-listing-api', '28 commits'],
+          ['obenan-dashboard/landing-cms-v2', '15 commits']
+        ]},
+        { title: 'Opened 12 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '9 pull requests'],
+          ['obenan-dashboard/obenan-listing-api', '3 pull requests']
+        ]}
+      ]},
+      { month: 'November 2024', items: [
+        { title: 'Created 162 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '134 commits'],
+          ['obenan-dashboard/obenan-frontend', '28 commits']
+        ]},
+        { title: 'Opened 11 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '8 pull requests'],
+          ['obenan-dashboard/obenan-frontend', '3 pull requests']
+        ]},
+        { title: 'Reviewed 8 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '8 reviews']
+        ]}
+      ]},
+      { month: 'October 2024', items: [
+        { title: 'Created 158 commits in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '118 commits'],
+          ['obenan-dashboard/obenan-listing-api', '24 commits'],
+          ['obenan-dashboard/rough-report', '16 commits']
+        ]},
+        { title: 'Opened 10 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '7 pull requests'],
+          ['obenan-dashboard/obenan-listing-api', '3 pull requests']
+        ]}
+      ]},
+      { month: 'September 2024', items: [
+        { title: 'Created 136 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '112 commits'],
+          ['obenan-dashboard/admin-dashboard', '24 commits']
+        ]},
+        { title: 'Reviewed 7 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '7 reviews']
+        ]}
+      ]},
+      { month: 'August 2024', items: [
+        { title: 'Created 128 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '108 commits'],
+          ['obenan-dashboard/obenan-listing-api', '20 commits']
+        ]},
+        { title: 'Opened 9 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '9 pull requests']
+        ]}
+      ]}
+    ]
+  },
+  '2023': {
+    commits: 862, prs: 119, reviews: 45, issues: 15,
+    contribLabel: '862 contributions in 2023 (May–Dec)',
+    months: ['May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    monthWeights: [0.5,0.55,0.6,0.6,0.65,0.7,0.75,0.7],
+    seed: 77,
+    activity: [
+      { month: 'December 2023', items: [
+        { title: 'Created 124 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '98 commits'],
+          ['obenan-dashboard/obenan-listing-api', '26 commits']
+        ]},
+        { title: 'Opened 18 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '14 pull requests'],
+          ['obenan-dashboard/obenan-listing-api', '4 pull requests']
+        ]}
+      ]},
+      { month: 'November 2023', items: [
+        { title: 'Created 118 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '94 commits'],
+          ['obenan-dashboard/obenan-frontend', '24 commits']
+        ]},
+        { title: 'Opened 16 pull requests in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '12 pull requests'],
+          ['obenan-dashboard/obenan-frontend', '4 pull requests']
+        ]},
+        { title: 'Reviewed 8 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '8 reviews']
+        ]}
+      ]},
+      { month: 'October 2023', items: [
+        { title: 'Created 112 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '88 commits'],
+          ['obenan-dashboard/obenan-listing-api', '24 commits']
+        ]},
+        { title: 'Opened 14 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '14 pull requests']
+        ]}
+      ]},
+      { month: 'September 2023', items: [
+        { title: 'Created 105 commits in 2 repositories', details: [
+          ['obenan-dashboard/obenan-api', '82 commits'],
+          ['obenan-dashboard/obenan-listing-api', '23 commits']
+        ]},
+        { title: 'Reviewed 6 pull requests in 1 repository', details: [
+          ['obenan-dashboard/obenan-api', '6 reviews']
+        ]}
+      ]},
+      { month: 'May – August 2023', items: [
+        { title: 'Created 403 commits across initial setup', details: [
+          ['obenan-dashboard/obenan-api', '328 commits'],
+          ['obenan-dashboard/obenan-listing-api', '42 commits'],
+          ['obenan-dashboard/obenan-frontend', '33 commits']
+        ]},
+        { title: 'Opened 71 pull requests in 3 repositories', details: [
+          ['obenan-dashboard/obenan-api', '52 pull requests'],
+          ['obenan-dashboard/obenan-listing-api', '12 pull requests'],
+          ['obenan-dashboard/obenan-frontend', '7 pull requests']
+        ]}
+      ]}
+    ]
+  }
+};
 
+// ── Repo URL mapping ──
+const repoUrls = {
+  'obenan-dashboard/obenan-api': 'https://github.com/obenan-dashboard/obenan-api',
+  'obenan-dashboard/whole-brain': 'https://github.com/obenan-dashboard/whole-brain',
+  'obenan-dashboard/obenan-listing-api': 'https://github.com/obenan-dashboard/obenan-listing-api',
+  'obenan-dashboard/obenan-frontend': 'https://github.com/obenan-dashboard/obenan-frontend',
+  'obenan-dashboard/landing-cms-v2': 'https://github.com/obenan-dashboard/landing-cms-v2',
+  'obenan-dashboard/rough-report': 'https://github.com/obenan-dashboard/rough-report',
+  'obenan-dashboard/admin-dashboard': 'https://github.com/obenan-dashboard/admin-dashboard'
+};
+
+// ── Animated counter ──
+function animateNumber(el, target) {
+  const duration = 1200;
+  const start = performance.now();
   function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
+    const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.floor(target * eased).toLocaleString();
     if (progress < 1) requestAnimationFrame(tick);
     else el.textContent = target.toLocaleString();
   }
   requestAnimationFrame(tick);
-});
+}
 
-// ── Generate Contribution Heatmap ──
-(function() {
+// ── Build heatmap ──
+function seededRandom(seed) {
+  let x = Math.sin(seed * 127.1) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+function buildHeatmap(monthWeights, seedOffset, weekCount) {
   const grid = document.getElementById('contribGrid');
-  const weeks = 52;
-
-  // Seed a deterministic "random" based on week/day for consistency
-  function seededRandom(seed) {
-    let x = Math.sin(seed * 127.1) * 43758.5453;
-    return x - Math.floor(x);
-  }
-
-  // Define contribution intensity patterns by month (0=Apr..11=Mar)
-  // Higher weight = more active. Based on real PR data.
-  const monthWeights = [
-    0.5,  // Apr 2025
-    0.6,  // May
-    0.7,  // Jun
-    0.65, // Jul
-    0.7,  // Aug
-    0.75, // Sep
-    0.8,  // Oct
-    0.85, // Nov
-    0.7,  // Dec
-    0.95, // Jan 2026
-    1.0,  // Feb 2026
-    0.9   // Mar 2026
-  ];
-
-  for (let w = 0; w < weeks; w++) {
+  grid.innerHTML = '';
+  for (let w = 0; w < weekCount; w++) {
     const col = document.createElement('div');
     col.className = 'graph-col';
-    const monthIndex = Math.floor((w / weeks) * 12);
-    const weight = monthWeights[monthIndex];
-
+    const mi = Math.floor((w / weekCount) * monthWeights.length);
+    const weight = monthWeights[mi];
     for (let d = 0; d < 7; d++) {
       const cell = document.createElement('div');
       cell.className = 'graph-cell';
-      const r = seededRandom(w * 7 + d + 42);
-
-      // Weekend (d=0 Sun, d=6 Sat) → less activity
+      const r = seededRandom(w * 7 + d + seedOffset);
       const isWeekend = (d === 0 || d === 6);
       const threshold = isWeekend ? 0.6 : 0.15;
-
       if (r > threshold) {
         const intensity = r * weight;
         if (intensity > 0.85) cell.className += ' l4';
@@ -912,7 +1025,85 @@ document.querySelectorAll('.sb-number[data-target]').forEach(el => {
     }
     grid.appendChild(col);
   }
-})();
+}
+
+// ── Build activity timeline ──
+function buildActivity(activityData) {
+  const container = document.getElementById('activityContent');
+  container.innerHTML = '';
+  activityData.forEach(m => {
+    const monthDiv = document.createElement('div');
+    monthDiv.className = 'activity-month';
+    const label = document.createElement('div');
+    label.className = 'month-label';
+    label.textContent = m.month;
+    monthDiv.appendChild(label);
+
+    m.items.forEach(item => {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'activity-item';
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'act-title';
+      titleDiv.textContent = item.title;
+      itemDiv.appendChild(titleDiv);
+
+      const detailDiv = document.createElement('div');
+      detailDiv.className = 'act-detail';
+      item.details.forEach((d, i) => {
+        const url = repoUrls[d[0]] || '#';
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank';
+        link.textContent = d[0];
+        detailDiv.appendChild(link);
+        detailDiv.appendChild(document.createTextNode(' \u2014 ' + d[1]));
+        if (i < item.details.length - 1) detailDiv.appendChild(document.createElement('br'));
+      });
+      itemDiv.appendChild(detailDiv);
+      monthDiv.appendChild(itemDiv);
+    });
+    container.appendChild(monthDiv);
+  });
+}
+
+// ── Update month labels on heatmap ──
+function updateMonthLabels(months) {
+  const row = document.querySelector('.graph-label-row');
+  row.innerHTML = '';
+  months.forEach(m => {
+    const span = document.createElement('span');
+    span.textContent = m;
+    row.appendChild(span);
+  });
+}
+
+// ── Switch year ──
+function switchYear(el, year) {
+  document.querySelectorAll('.year-link').forEach(l => l.classList.remove('active'));
+  el.classList.add('active');
+
+  const data = yearData[year];
+
+  // Animate stats
+  animateNumber(document.getElementById('statCommits'), data.commits);
+  animateNumber(document.getElementById('statPRs'), data.prs);
+  animateNumber(document.getElementById('statReviews'), data.reviews);
+  animateNumber(document.getElementById('statIssues'), data.issues);
+
+  // Update contribution header
+  document.getElementById('contribHeader').innerHTML = '<strong>' + data.commits.toLocaleString() + '</strong> ' + data.contribLabel.replace(/^[\d,]+\s*/, '');
+
+  // Rebuild heatmap
+  const weekCount = year === '2023' ? 35 : 52;
+  updateMonthLabels(data.months);
+  buildHeatmap(data.monthWeights, data.seed, weekCount);
+
+  // Rebuild activity
+  buildActivity(data.activity);
+}
+
+// ── Initial load ──
+switchYear(document.querySelector('.year-link.active'), '2025-2026');
 </script>
 
 </body>
