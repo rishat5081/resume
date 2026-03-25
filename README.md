@@ -2,11 +2,17 @@
 
 A clean, print-ready HTML resume with a built-in cover letter generator.
 
+## Live Preview
+
+- **Resume:** [rishat5081.github.io/resume/SAAD_SOHAIL_Resume.html](https://rishat5081.github.io/resume/SAAD_SOHAIL_Resume.html)
+- **GitHub Stats:** [rishat5081.github.io/resume/github-stats.html](https://rishat5081.github.io/resume/github-stats.html)
+
 ## Features
 
 - **Single-file HTML resume** — no build tools, no dependencies
 - **Print-optimized** — A4 layout with proper page margins, renders cleanly to PDF via browser print
 - **Cover letter generator** — type a company name and get an auto-generated summary and cover letter (hidden when printing)
+- **GitHub stats dashboard** — dark-themed GitHub profile stats page
 - **Responsive styling** — Segoe UI typography, grid-based skills and education layout
 
 ## Usage
