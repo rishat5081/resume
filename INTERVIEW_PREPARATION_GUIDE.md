@@ -202,6 +202,29 @@ Each topic is covered in-depth with concepts, code examples, comparisons, and in
 
 ---
 
+## Evaluation Platforms for Practice
+
+### Coding Challenges
+| Platform | Best For | Link |
+|----------|----------|------|
+| **LeetCode** | Algorithm problems, FAANG prep | [leetcode.com](https://leetcode.com) |
+| **HackerRank** | Skill assessments, certificates | [hackerrank.com](https://www.hackerrank.com) |
+| **CodeSignal** | Company-specific assessments | [codesignal.com](https://codesignal.com) |
+| **Codewars** | Kata-style practice, community | [codewars.com](https://www.codewars.com) |
+| **InterviewBit** | Structured interview prep | [interviewbit.com](https://www.interviewbit.com) |
+| **Edabit** | Beginner-friendly challenges | [edabit.com](https://edabit.com) |
+| **JSchallenger** | JavaScript-specific practice | [jschallenger.com](https://www.jschallenger.com) |
+| **Exercism** | Mentored JS/TS tracks | [exercism.org](https://exercism.org) |
+
+### Project-Based Practice
+| Platform | Best For | Link |
+|----------|----------|------|
+| **Frontend Mentor** | Full-stack JS projects with real designs | [frontendmentor.io](https://www.frontendmentor.io) |
+| **Dev.to** | Community challenges and code reviews | [dev.to](https://dev.to) |
+| **GitHub** | Open source Node.js projects | [github.com](https://github.com) |
+
+---
+
 ## Quick Reference — Your Resume Projects
 
 | Project | Stack | Key Achievement |
