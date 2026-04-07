@@ -5,24 +5,42 @@
 **Use STAR method: Situation → Task → Action → Result**
 
 ### Q: Tell me about yourself
+**What:** An open-ended prompt to deliver a concise professional summary covering your experience, current role, and key strengths.
+**Why:** Usually the first question asked — a strong answer sets the tone for the entire interview and frames how the interviewer perceives you.
+
 > "I'm a Senior Full-Stack Engineer with 6+ years of experience building production-grade systems. I currently work at Global Software Consulting where I architect AI-powered SaaS platforms using Node.js, PostgreSQL, MongoDB, and AWS. I've integrated LLMs like GPT-4 and Claude into production systems, built RAG architectures, and managed infrastructure serving thousands of businesses. I'm passionate about clean architecture, scalable systems, and shipping quality software."
 
 ### Q: Describe a challenging technical problem you solved
+**What:** A STAR-format question asking you to walk through a real production problem, your approach, and the measurable outcome.
+**Why:** Demonstrates your problem-solving ability, technical depth, and impact — the most important signal interviewers look for in senior engineers.
+
 > **Situation:** At Obenan, we had a SaaS platform serving thousands of businesses, and review fetching from Google was bottlenecking our system.
 > **Task:** I needed to process thousands of review fetches without blocking the main application.
 > **Action:** I designed an asynchronous job processing pipeline using BullMQ and Redis. Jobs were queued with retry logic, exponential backoff, and concurrency limits. I also added a sentiment analysis step using GPT-4 that ran as a separate job in the pipeline.
 > **Result:** Review processing became fully async with zero impact on API response times. The system handled 10x more reviews with automatic retry on failures.
 
 ### Q: How do you handle disagreements with team members?
+**What:** A question testing your conflict resolution skills and ability to collaborate under differing opinions.
+**Why:** Shows you can navigate team dynamics professionally — a critical skill for senior roles where cross-team collaboration is expected.
+
 > Focus on data and outcomes, not opinions. Propose A/B testing or prototyping when possible. Ultimately defer to whoever owns the decision, but ensure concerns are documented.
 
 ### Q: How do you stay updated with new technologies?
+**What:** A question about your learning habits and how you keep your skills current in a fast-evolving industry.
+**Why:** Signals intellectual curiosity and growth mindset — companies want engineers who adapt to new tools and patterns without being pushed.
+
 > I follow tech blogs, participate in open-source, experiment with new tools in side projects, and actively use AI-assisted development (Claude Code, Codex) to explore cutting-edge patterns.
 
 ### Q: What's your biggest weakness?
+**What:** A self-awareness question where you identify a genuine weakness and show how you actively work to improve it.
+**Why:** Tests honesty and self-reflection — interviewers want to see you can identify blind spots and take concrete steps to address them.
+
 > "I sometimes over-engineer solutions — anticipating future requirements that may never come. I've learned to focus on shipping the simplest solution first and iterating based on real user feedback."
 
 ### Q: Why should we hire you?
+**What:** A closing pitch where you summarize your unique value proposition and what differentiates you from other candidates.
+**Why:** Your final chance to leave a strong impression — directly tying your skills to what the company needs shows preparation and confidence.
+
 > "I bring a rare combination of deep backend expertise, hands-on AI/LLM integration experience, and proven ability to architect production systems at scale. I've built systems handling thousands of businesses with multi-tenant isolation, integrated multiple AI providers, and managed full AWS infrastructure. I don't just write code — I design systems that ship, scale, and maintain."
 
 ---

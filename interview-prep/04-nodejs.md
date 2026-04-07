@@ -56,6 +56,9 @@ Between each phase: process all microtasks (Promises, process.nextTick)
 ## 4.4 Key Node.js Concepts
 
 ### Streams
+**What:** A Node.js abstraction for handling data in chunks (readable, writable, duplex, transform) rather than loading it all into memory at once.
+**Why:** Streams are critical for building performant APIs that handle file uploads, large datasets, or real-time data -- interviewers use them to test your understanding of memory efficiency.
+
 ```javascript
 const fs = require('fs');
 
@@ -76,6 +79,9 @@ stream.on('end', () => { /* done */ });
 ```
 
 ### Cluster Module
+**What:** A built-in Node.js module that forks multiple child processes (workers) to share the same server port, enabling multi-core utilization.
+**Why:** Interviewers ask about clustering to see if you know how to scale a single-threaded Node.js application across all available CPU cores in production.
+
 ```javascript
 const cluster = require('cluster');
 const os = require('os');
@@ -94,6 +100,9 @@ if (cluster.isPrimary) {
 ```
 
 ### Worker Threads
+**What:** A Node.js module that allows running JavaScript in parallel OS threads, sharing memory via `SharedArrayBuffer`, for CPU-intensive tasks.
+**Why:** This is a common follow-up to "Is Node.js single-threaded?" -- interviewers want to know if you can offload heavy computation without blocking the event loop.
+
 ```javascript
 const { Worker } = require('worker_threads');
 
@@ -108,6 +117,9 @@ worker.on('message', (result) => {
 ```
 
 ### Buffer
+**What:** A Node.js class for handling raw binary data (bytes) directly in memory, used for file I/O, network packets, and image processing.
+**Why:** Buffers come up in interviews about streams, file handling, and encoding -- they show you understand how Node.js works below the string abstraction layer.
+
 ```javascript
 // Buffers handle binary data (images, files, network packets)
 const buf = Buffer.from('Hello', 'utf-8');
@@ -147,6 +159,8 @@ A function that sits between the request and response, processing the request be
 This is the **#1 most asked Node.js interview question**. Let's break it down so you can explain it to anyone.
 
 ### How Node.js Executes Code — The Full Picture
+**What:** A three-phase execution model: synchronous code runs first on the call stack, then microtasks (nextTick, Promises), then macrotasks (timers, I/O, setImmediate).
+**Why:** This is the #1 most asked Node.js interview question -- being able to walk through execution order step by step separates senior candidates from juniors.
 
 When Node.js runs your file, it goes through these phases in order:
 
@@ -206,6 +220,8 @@ When Node.js runs your file, it goes through these phases in order:
 ```
 
 ### The Priority Ladder (memorize this)
+**What:** The strict ordering of execution priorities: sync code > process.nextTick > Promise.then > setTimeout > setImmediate.
+**Why:** Memorizing this ladder lets you instantly predict the output of any event-loop ordering question in an interview.
 
 ```
 HIGHEST ──► Synchronous code (Call Stack)
@@ -220,6 +236,8 @@ LOWEST  ──► setImmediate()
 ---
 
 ### Practical Example — Line by Line Execution
+**What:** A concrete code snippet mixing sync code, process.nextTick, setTimeout, and Promises to demonstrate exact execution order.
+**Why:** Interviewers love giving code like this and asking "what is the output?" -- practicing step-by-step tracing is the best way to nail these questions.
 
 ```javascript
 console.log("1");
@@ -251,6 +269,8 @@ console.log("4");
 ```
 
 ### Step-by-Step Execution
+**What:** A detailed walkthrough of every line in the example above, showing which queue each callback enters and in what order they execute.
+**Why:** Being able to explain each step with queue states proves you truly understand the event loop rather than having memorized outputs.
 
 #### PHASE 1: Synchronous Execution (Call Stack)
 
@@ -423,6 +443,8 @@ Timer queue is now EMPTY → event loop checks for more work → none → EXIT
 ---
 
 ### FINAL OUTPUT
+**What:** The complete console output of the practical example, annotated with which phase (sync, microtask, or macrotask) produced each line.
+**Why:** This is the answer you would give when an interviewer shows you async code and asks "what gets printed and in what order?"
 
 ```
 1                    ← Step 1:  Sync (Call Stack)
@@ -435,6 +457,8 @@ Promises-resolved    ← Step 10: Microtask (Promise .then — second async prio
 ```
 
 ### Visual Timeline
+**What:** A time-axis diagram showing when each piece of code hits the call stack, microtask queue, and macrotask queue.
+**Why:** A visual mental model makes it much easier to trace execution order during whiteboard or live-coding interview rounds.
 
 ```
 TIME ───────────────────────────────────────────────────────────►
@@ -465,6 +489,8 @@ Output:         "3"
 ---
 
 ### More Tricky Examples
+**What:** Advanced event-loop scenarios including nested microtasks, setTimeout vs setImmediate edge cases, and async/await desugaring.
+**Why:** Senior-level interviews go beyond basic ordering -- these edge cases test whether you can reason about microtask interleaving and phase-specific behavior.
 
 #### Example 2: Nested Microtasks
 
@@ -555,6 +581,8 @@ B     ← Sync (main() paused at await, execution continues outside)
 ---
 
 ### Cheat Sheet — What Goes Where?
+**What:** A quick-reference table mapping every async API (setTimeout, Promise.then, process.nextTick, etc.) to its queue and priority level.
+**Why:** Having this table memorized gives you instant answers for any "what queue does X go to?" interview question.
 
 | Code | Queue | Priority |
 |------|-------|----------|
@@ -571,6 +599,8 @@ B     ← Sync (main() paused at await, execution continues outside)
 | `I/O callbacks` | Pending I/O macrotask queue | After Timer phase |
 
 ### The Golden Rules
+**What:** Eight essential rules that govern JavaScript/Node.js execution order, from "sync first" to "await pauses the function, not the program."
+**Why:** These rules are your cheat code for any event-loop question -- internalize them and you can reason through any output-order problem on the spot.
 
 1. **Sync code ALWAYS runs first** — all of it, top to bottom
 2. **Microtasks drain completely** before ANY macrotask runs

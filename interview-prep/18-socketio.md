@@ -62,6 +62,9 @@ socket.broadcast.emit('event', data);
 ```
 
 ### Scaling Socket.IO with Redis Adapter
+**What:** The Redis adapter uses Redis Pub/Sub to broadcast Socket.IO events across multiple server instances, so all connected clients receive messages regardless of which server they're on.
+**Why:** Interviewers ask this to test whether you know how to scale real-time features beyond a single server, which is essential for production deployments behind a load balancer.
+
 ```javascript
 const { createAdapter } = require('@socket.io/redis-adapter');
 const { createClient } = require('redis');

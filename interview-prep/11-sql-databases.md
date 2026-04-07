@@ -3,6 +3,9 @@
 ## 11.1 Core SQL Concepts
 
 ### Data Types (PostgreSQL)
+**What:** The built-in column types PostgreSQL offers for storing numbers, strings, dates, JSON, arrays, and UUIDs.
+**Why:** Choosing the right data type affects storage efficiency, query performance, and validation — interviewers test this to gauge your schema design skills.
+
 ```sql
 -- Numbers
 INTEGER, BIGINT, DECIMAL(10,2), FLOAT, SERIAL (auto-increment)
@@ -27,6 +30,9 @@ UUID
 ```
 
 ### CRUD Operations
+**What:** The four fundamental SQL statements — INSERT, SELECT, UPDATE, DELETE — used to create, read, update, and delete data.
+**Why:** CRUD is the backbone of every database interaction, and interviewers expect you to write these queries fluently with proper clauses.
+
 ```sql
 -- Create
 INSERT INTO users (name, email, age) VALUES ('Saad', 'saad@email.com', 28);
@@ -42,6 +48,8 @@ DELETE FROM users WHERE id = 1;
 ```
 
 ### JOINs (Critical Interview Topic)
+**What:** SQL operations that combine rows from two or more tables based on a related column between them.
+**Why:** JOINs are fundamental to relational databases — every SQL interview will test your ability to write and optimize them.
 
 ```sql
 -- INNER JOIN — only matching rows from both tables
@@ -76,6 +84,9 @@ rows            matching B       matching A      both tables
 ```
 
 ### Indexes
+**What:** Data structures (typically B-Trees) that speed up data retrieval by allowing the database to find rows without scanning entire tables.
+**Why:** Index design is a top interview topic because it directly impacts query performance — knowing when and how to index separates junior from senior engineers.
+
 ```sql
 -- B-Tree index (default, most common)
 CREATE INDEX idx_users_email ON users(email);
@@ -102,6 +113,9 @@ CREATE INDEX idx_user_data ON users USING GIN(metadata);
 - Columns rarely used in WHERE/JOIN/ORDER BY
 
 ### Transactions & ACID
+**What:** A transaction groups multiple SQL operations into a single atomic unit that either fully succeeds or fully rolls back, governed by ACID properties.
+**Why:** Interviewers use transactions to test your understanding of data integrity and how to prevent partial updates or race conditions in production systems.
+
 ```sql
 BEGIN;
 
@@ -119,6 +133,9 @@ COMMIT;  -- or ROLLBACK; to undo
 - **Durability** — Once committed, data survives crashes.
 
 ### Aggregate Functions
+**What:** SQL functions like COUNT, AVG, SUM, MIN, and MAX that compute a single result from a set of rows, often used with GROUP BY.
+**Why:** Aggregate queries are extremely common in interview coding rounds — they test your ability to summarize and analyze data in a single statement.
+
 ```sql
 SELECT
   department,
@@ -134,6 +151,9 @@ ORDER BY avg_salary DESC;
 ```
 
 ### Subqueries vs JOINs
+**What:** Two approaches to combining data — subqueries nest a SELECT inside another query, while JOINs merge tables directly.
+**Why:** Interviewers ask you to compare these to test whether you understand query execution plans and can choose the more performant approach.
+
 ```sql
 -- Subquery (slower for large datasets)
 SELECT * FROM users
@@ -147,6 +167,9 @@ WHERE o.total > 1000;
 ```
 
 ### Window Functions (Advanced)
+**What:** Functions like ROW_NUMBER, RANK, and SUM OVER that perform calculations across a set of rows related to the current row without collapsing them.
+**Why:** Window functions are a senior-level interview topic that shows you can solve ranking, running totals, and partitioned analytics without subqueries.
+
 ```sql
 -- ROW_NUMBER, RANK, DENSE_RANK
 SELECT
@@ -165,6 +188,8 @@ FROM transactions;
 ```
 
 ### Normalization
+**What:** The process of organizing database tables to reduce data redundancy and improve integrity through normal forms (1NF, 2NF, 3NF).
+**Why:** Normalization questions test your ability to design clean schemas — interviewers want to see you balance data integrity with query performance.
 
 | Form | Rule | Example |
 |------|------|---------|

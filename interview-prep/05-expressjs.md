@@ -6,6 +6,9 @@ Express is a **minimal, unopinionated web framework** for Node.js. It provides r
 ## 5.2 Core Concepts
 
 ### Middleware Chain
+**What:** A sequence of functions that execute in order on every request, each able to read/modify the request and response objects before calling `next()`.
+**Why:** Middleware is the core architectural concept of Express -- interviewers expect you to explain how authentication, logging, error handling, and body parsing all hook into the request pipeline.
+
 ```javascript
 const express = require('express');
 const app = express();
@@ -38,6 +41,9 @@ app.use((err, req, res, next) => {
 ```
 
 ### Routing
+**What:** The mechanism that maps HTTP methods and URL paths to specific handler functions, supporting route parameters, query strings, and modular router groups.
+**Why:** Interviewers ask about routing to see if you can design clean RESTful APIs and understand how Express matches incoming requests to the correct handler.
+
 ```javascript
 const router = express.Router();
 

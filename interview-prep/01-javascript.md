@@ -6,6 +6,9 @@ JavaScript is a **single-threaded, non-blocking, asynchronous, interpreted** pro
 ## 1.2 Core Concepts
 
 ### Event Loop
+**What:** The mechanism that allows single-threaded JavaScript to perform non-blocking operations by offloading work and processing callbacks from task queues.
+**Why:** Understanding the event loop is the single most important concept for explaining async behavior in JavaScript interviews.
+
 The event loop is the heart of JavaScript's asynchronous behavior.
 
 ```
@@ -37,6 +40,9 @@ Promise.resolve().then(() => console.log('3')); // Microtask → runs second
 ```
 
 ### Closures
+**What:** A function that "remembers" variables from its outer (enclosing) scope even after that outer function has finished executing.
+**Why:** Closures enable data privacy, function factories, and the module pattern -- one of the most frequently tested JavaScript concepts.
+
 A closure is a function that remembers the variables from its outer scope even after the outer function has returned.
 
 ```javascript
@@ -60,6 +66,9 @@ counter.getCount();  // 2
 - Module pattern
 
 ### Hoisting
+**What:** JavaScript's behavior of moving variable and function declarations to the top of their scope during the compilation phase, before code execution.
+**Why:** Interviewers test this to see if you understand why `var` behaves differently from `let`/`const` and why function declarations can be called before they appear in code.
+
 JavaScript moves **declarations** (not initializations) to the top of their scope before execution.
 
 ```javascript
@@ -77,6 +86,8 @@ var greet2 = function() { console.log('Hello'); };
 ```
 
 ### var vs let vs const
+**What:** The three variable declaration keywords in JavaScript, each with different scoping, hoisting, and reassignment rules.
+**Why:** This is a fundamental question in nearly every JavaScript interview to test your understanding of scope, the temporal dead zone, and modern best practices.
 
 | Feature | `var` | `let` | `const` |
 |---------|-------|-------|---------|
@@ -89,6 +100,9 @@ var greet2 = function() { console.log('Hello'); };
 **Rule:** Always use `const` by default. Use `let` only when you need to reassign. Never use `var`.
 
 ### Prototypal Inheritance
+**What:** JavaScript's inheritance model where objects inherit directly from other objects through a prototype chain, rather than using classical class-based inheritance.
+**Why:** Interviewers ask this to gauge your understanding of how JavaScript objects actually work under the hood, even when using ES6 `class` syntax.
+
 JavaScript doesn't have classical inheritance — it uses **prototypes**.
 
 ```javascript
@@ -105,6 +119,8 @@ dog.speak(); // "Rex makes a sound"
 ```
 
 ### `this` Keyword
+**What:** A dynamic reference that changes based on how a function is called -- it can point to the global object, a class instance, a DOM element, or an explicitly bound value.
+**Why:** Misunderstanding `this` is the #1 source of bugs in JavaScript, and interviewers use it to test your grasp of execution context and arrow functions.
 
 | Context | `this` refers to |
 |---------|-----------------|
@@ -124,6 +140,8 @@ const obj = {
 ```
 
 ### Promises & Async/Await
+**What:** Promises are objects representing the eventual completion (or failure) of an async operation; async/await is syntactic sugar that makes Promises read like synchronous code.
+**Why:** Almost every real-world JavaScript application uses async operations, so interviewers expect you to explain Promises, chaining, error handling, and `Promise.all` vs `Promise.race`.
 
 ```javascript
 // Promise
@@ -160,6 +178,8 @@ Promise.any([p1, p2])      // Resolves with the FIRST to resolve (ignores reject
 ```
 
 ### Destructuring, Spread & Rest
+**What:** ES6 syntax features for unpacking values from arrays/objects (destructuring), expanding iterables (spread), and collecting remaining arguments (rest).
+**Why:** These are used constantly in modern JavaScript/React codebases, and interviewers test whether you can read and write concise, idiomatic code.
 
 ```javascript
 // Object destructuring
@@ -179,6 +199,8 @@ function sum(...numbers) {
 ```
 
 ### Map, Filter, Reduce
+**What:** Higher-order array methods that transform (map), select (filter), or accumulate (reduce) elements without mutating the original array.
+**Why:** These are the backbone of functional programming in JavaScript and are tested in almost every coding challenge to assess clean, declarative thinking.
 
 ```javascript
 const users = [
@@ -203,6 +225,9 @@ const activeNames = users
 ```
 
 ### WeakMap & WeakSet
+**What:** Collections similar to Map/Set but with weakly-held keys (objects only) that allow garbage collection when no other references exist.
+**Why:** Interviewers ask about these to test your knowledge of memory management and to see if you know how to store metadata on objects without causing memory leaks.
+
 ```javascript
 // WeakMap — keys must be objects, garbage collected when no other reference
 const cache = new WeakMap();
@@ -214,6 +239,9 @@ obj = null; // The entry in WeakMap is now garbage collected
 ```
 
 ### Event Delegation
+**What:** A pattern where a single event listener on a parent element handles events for all its child elements using event bubbling.
+**Why:** This is a classic front-end interview topic that tests your understanding of the DOM event model and how to build performant UIs with fewer listeners.
+
 ```javascript
 // Instead of adding listeners to each button...
 document.getElementById('parent').addEventListener('click', (e) => {

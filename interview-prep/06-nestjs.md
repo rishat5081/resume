@@ -21,6 +21,9 @@ NestJS is an **opinionated, Angular-inspired Node.js framework** built with Type
 ```
 
 ### Module
+**What:** The organizational building block of a NestJS app that groups related controllers, services, and imports into a cohesive unit with explicit dependency boundaries.
+**Why:** Interviewers ask about modules to see if you understand NestJS's modular architecture and how it enforces separation of concerns at scale.
+
 ```typescript
 @Module({
   imports: [DatabaseModule, AuthModule],
@@ -32,6 +35,9 @@ export class UsersModule {}
 ```
 
 ### Controller
+**What:** A class decorated with `@Controller()` that handles incoming HTTP requests, delegates business logic to services, and returns responses.
+**Why:** Controllers are the entry point for every request in NestJS -- interviewers test whether you understand how decorators like `@Get`, `@Post`, and parameter decorators wire up routing.
+
 ```typescript
 @Controller('users')
 export class UsersController {
@@ -56,6 +62,9 @@ export class UsersController {
 ```
 
 ### Service
+**What:** An `@Injectable()` class that encapsulates business logic and data access, injected into controllers (or other services) via NestJS's dependency injection container.
+**Why:** Services demonstrate your understanding of the single-responsibility principle and DI -- two concepts interviewers consider essential for scalable backend design.
+
 ```typescript
 @Injectable()
 export class UsersService {
@@ -80,6 +89,9 @@ export class UsersService {
 ```
 
 ### Guards (Authentication)
+**What:** Classes implementing `CanActivate` that run before route handlers to determine whether a request should be allowed (e.g., JWT verification, role checks).
+**Why:** Guards are how NestJS handles auth declaratively -- interviewers ask about them to see if you know how to protect routes without cluttering controller logic.
+
 ```typescript
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
@@ -100,6 +112,9 @@ export class JwtAuthGuard implements CanActivate {
 ```
 
 ### Pipes (Validation)
+**What:** Transform-and-validate layers that process incoming data before it reaches the route handler, typically using DTOs with `class-validator` decorators.
+**Why:** Interviewers test pipes to see if you validate input at the framework level rather than scattering manual checks throughout your business logic.
+
 ```typescript
 // DTO with class-validator
 export class CreateUserDto {

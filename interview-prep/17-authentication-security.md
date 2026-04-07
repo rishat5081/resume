@@ -3,6 +3,9 @@
 ## 17.1 JWT (JSON Web Tokens)
 
 ### Structure
+**What:** A JWT consists of three Base64-encoded parts -- Header (algorithm), Payload (claims/data), and Signature (verification hash) -- separated by dots.
+**Why:** Understanding JWT structure is fundamental because interviewers will ask how tokens are verified, what data they carry, and why they can't be tampered with.
+
 ```
 Header.Payload.Signature
 
@@ -21,6 +24,9 @@ HMACSHA256(base64(header) + "." + base64(payload), secret)
 ```
 
 ### Implementation
+**What:** JWT implementation involves signing tokens with a secret on login, then verifying them in middleware to authenticate every API request.
+**Why:** This is the most common auth pattern in Node.js APIs, and interviewers expect you to code token generation, verification, and error handling from scratch.
+
 ```javascript
 const jwt = require('jsonwebtoken');
 
@@ -60,6 +66,8 @@ function authMiddleware(req, res, next) {
 ```
 
 ### Access Token vs Refresh Token
+**What:** Access tokens are short-lived credentials for API authentication, while refresh tokens are long-lived tokens used solely to obtain new access tokens.
+**Why:** Interviewers ask about the dual-token pattern to test whether you understand how to balance security (short expiry) with user experience (seamless re-authentication).
 
 | Feature | Access Token | Refresh Token |
 |---------|-------------|---------------|

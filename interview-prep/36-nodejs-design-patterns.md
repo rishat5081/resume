@@ -8,6 +8,9 @@ Design patterns are proven, reusable solutions to common software design problem
 ## 36.2 Creational Patterns
 
 ### Singleton Pattern
+**What:** A creational pattern that ensures a class has only one instance throughout the application and provides a global access point to it.
+**Why:** Frequently asked in interviews because it applies to real-world resources like database connections, Redis clients, and logger instances that must not be duplicated.
+
 Ensures a class has only **one instance** throughout the application.
 
 ```javascript
@@ -47,6 +50,9 @@ console.log(db1 === db2); // true
 ---
 
 ### Factory Pattern
+**What:** A creational pattern that delegates object creation to a factory function, which decides which class to instantiate based on input.
+**Why:** Shows you can write extensible code where adding new types (e.g., notification channels) requires zero changes to existing logic.
+
 Creates objects **without specifying the exact class**. A function decides which object to create based on input.
 
 ```javascript
@@ -104,6 +110,9 @@ await pushNotifier.send(deviceToken, { title: 'Match Started', body: '...' });
 ---
 
 ### Builder Pattern
+**What:** A creational pattern that constructs complex objects step by step using method chaining, separating construction from representation.
+**Why:** Demonstrates ability to design clean APIs for complex object creation — commonly seen in query builders, config objects, and HTTP request builders.
+
 Constructs complex objects **step by step**. Useful when an object has many optional parameters.
 
 ```javascript
@@ -182,6 +191,9 @@ const results = await db.query(query.sql, query.values);
 ## 36.3 Structural Patterns
 
 ### Module Pattern
+**What:** A structural pattern that encapsulates private variables and functions inside a module, exposing only a clean public API.
+**Why:** The foundation of Node.js itself — understanding this pattern shows you grasp how `require()` and `module.exports` enforce encapsulation.
+
 Encapsulates private state and exposes a **public API**. This is the foundation of Node.js itself.
 
 ```javascript
@@ -234,6 +246,9 @@ const { user, token } = await auth.login('saad@email.com', 'password123');
 ---
 
 ### Adapter Pattern
+**What:** A structural pattern that wraps an incompatible third-party interface so it conforms to the interface your code expects.
+**Why:** Essential for switching between vendors (e.g., SendGrid vs Mailgun, OpenAI vs Claude) without rewriting business logic — a common production scenario.
+
 Wraps an incompatible interface to make it **work with your existing code**. Like a power adapter for different plug types.
 
 ```javascript
@@ -289,6 +304,9 @@ await emailService.send('user@email.com', 'Welcome!', '<h1>Hello</h1>');
 ---
 
 ### Proxy Pattern
+**What:** A structural pattern that wraps an object to control access, adding behavior like caching, logging, or access control without modifying the original.
+**Why:** Demonstrates understanding of cross-cutting concerns — interviewers look for this when discussing caching layers and performance optimization.
+
 A wrapper that **controls access** to another object. Adds functionality without changing the original.
 
 ```javascript
@@ -341,6 +359,9 @@ await cache.invalidate(`reviews:location:${locationId}`);
 ---
 
 ### Decorator Pattern
+**What:** A structural pattern that wraps functions or objects with additional behavior (logging, retry, caching) using higher-order functions.
+**Why:** Shows you can compose reusable functionality layers — a key pattern for writing DRY, maintainable Node.js middleware and service wrappers.
+
 **Adds behavior** to an object dynamically without modifying it. In Node.js, this is often done with higher-order functions.
 
 ```javascript
@@ -408,6 +429,9 @@ const reviews = await enhancedFetch(locationId);
 ## 36.4 Behavioral Patterns
 
 ### Observer Pattern (EventEmitter)
+**What:** A behavioral pattern where objects subscribe to events and get notified when state changes occur, implemented via Node.js EventEmitter.
+**Why:** Core to Node.js architecture — used in Socket.IO, BullMQ, streams, and any event-driven system, making it one of the most asked patterns.
+
 Objects **subscribe to events** and get notified when something happens. Node.js EventEmitter is the built-in implementation.
 
 ```javascript
@@ -472,6 +496,9 @@ reviewService.on('review:deleted', async (review) => {
 ---
 
 ### Strategy Pattern
+**What:** A behavioral pattern that defines a family of interchangeable algorithms, letting you swap implementations at runtime without changing the caller.
+**Why:** Directly relevant to real-world scenarios like switching AI providers, payment gateways, or sorting algorithms — shows you design for flexibility.
+
 Defines a **family of algorithms** and makes them interchangeable. The caller picks which strategy to use at runtime.
 
 ```javascript
@@ -552,6 +579,9 @@ sentiment.analyze('Best pizza ever'); // Free, no API call
 ---
 
 ### Middleware/Chain of Responsibility Pattern
+**What:** A behavioral pattern that passes a request through a chain of handlers, where each can process, modify, or short-circuit the request.
+**Why:** The backbone of Express.js and NestJS — understanding this pattern is mandatory for any Node.js interview since every request flows through it.
+
 Passes a request through a **chain of handlers**. Each handler can process the request, modify it, or pass it along. This is the core of Express.js.
 
 ```javascript
@@ -618,6 +648,9 @@ router.post('/reviews',
 ---
 
 ### Repository Pattern
+**What:** A behavioral pattern that abstracts all data access logic into a separate layer, so business logic never talks directly to the database.
+**Why:** Enables clean architecture, easy testing via mocking, and painless ORM/database swaps — a must-know for enterprise Node.js applications.
+
 Abstracts data access into a **separate layer**. Your business logic never talks directly to the database.
 
 ```javascript
@@ -699,6 +732,9 @@ class UserService {
 ## 36.5 Concurrency Patterns
 
 ### Pub/Sub Pattern
+**What:** A concurrency pattern where publishers send messages to channels and subscribers receive them, enabling cross-process communication via brokers like Redis.
+**Why:** Critical for scaling Node.js beyond a single process — interviewers ask this when discussing microservices, real-time systems, and horizontal scaling.
+
 Publishers send messages to a **channel**, subscribers receive them. Decouples senders from receivers.
 
 ```javascript
@@ -744,6 +780,9 @@ subscriber2.on('message', (channel, message) => {
 ---
 
 ### Circuit Breaker Pattern
+**What:** A concurrency pattern that stops calling a failing service after repeated failures, returning a fallback until the service recovers.
+**Why:** Prevents cascading failures in distributed systems — essential for resilient microservices and production-grade Node.js applications calling external APIs.
+
 **Prevents cascading failures** when an external service is down. Like an electrical circuit breaker.
 
 ```javascript

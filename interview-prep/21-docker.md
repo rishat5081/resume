@@ -13,6 +13,9 @@ Docker Compose → Define multi-container apps
 ```
 
 ### Dockerfile
+**What:** A Dockerfile is a text file with step-by-step instructions to build a Docker image, specifying the base OS, dependencies, source code, and startup command.
+**Why:** Interviewers expect you to write production-ready Dockerfiles with multi-stage builds, non-root users, and layer caching to demonstrate containerization best practices.
+
 ```dockerfile
 # Multi-stage build (smaller final image)
 FROM node:20-alpine AS builder
@@ -34,6 +37,9 @@ CMD ["node", "dist/main.js"]
 ```
 
 ### Docker Compose
+**What:** Docker Compose is a tool that defines and runs multi-container applications using a single YAML file, managing networking, volumes, and service dependencies.
+**Why:** Interviewers ask about Compose to verify you can set up local development environments with databases, caches, and your app running together with one command.
+
 ```yaml
 version: '3.8'
 services:
@@ -65,6 +71,9 @@ volumes:
 ```
 
 ### Common Commands
+**What:** Essential Docker CLI commands for building images, running/stopping containers, viewing logs, and managing multi-container setups.
+**Why:** Interviewers may ask you to debug a running container or explain how you'd inspect logs and shell into a container in production.
+
 ```bash
 docker build -t myapp .           # Build image
 docker run -p 3000:3000 myapp     # Run container

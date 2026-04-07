@@ -3,6 +3,9 @@
 ## 20.1 Services You've Used
 
 ### EC2 (Elastic Compute Cloud)
+**What:** EC2 provides resizable virtual servers in the cloud where you deploy and run your applications with full control over the OS and networking.
+**Why:** EC2 is the most fundamental AWS service, and interviewers expect you to know instance types, security groups, and how to SSH into and manage production servers.
+
 ```
 Virtual servers in the cloud.
 
@@ -19,6 +22,9 @@ Key Concepts:
 ```
 
 ### S3 (Simple Storage Service)
+**What:** S3 is an object storage service that stores files as objects in buckets with virtually unlimited capacity, versioning, and lifecycle management.
+**Why:** Interviewers ask about S3 for file uploads, static hosting, backups, and pre-signed URLs -- it appears in nearly every AWS architecture question.
+
 ```
 Object storage for files, backups, static assets.
 
@@ -37,6 +43,9 @@ Use Cases (Your Experience):
 ```
 
 ### Lambda (Serverless Functions)
+**What:** Lambda runs your code in response to events (API calls, S3 uploads, queue messages) without provisioning or managing servers, billing per execution.
+**Why:** Interviewers test whether you understand serverless trade-offs like cold starts, execution limits, and when Lambda is more cost-effective than EC2.
+
 ```
 Run code without managing servers. Pay per execution.
 
@@ -49,6 +58,9 @@ Your Usage:
 ```
 
 ### VPC (Virtual Private Cloud)
+**What:** A VPC is an isolated virtual network in AWS where you control subnets, routing, gateways, and firewall rules to securely host your infrastructure.
+**Why:** VPC design is a top AWS interview topic because it tests your understanding of network security, public vs private subnets, and how to isolate databases from the internet.
+
 ```
 Isolated network environment in AWS.
 
@@ -72,6 +84,9 @@ Typical Architecture:
 ```
 
 ### ELB (Elastic Load Balancer)
+**What:** ELB automatically distributes incoming traffic across multiple EC2 instances or containers, with health checks to route around failures.
+**Why:** Load balancing is central to high-availability architecture questions, and interviewers expect you to know the difference between ALB, NLB, and health check behavior.
+
 ```
 Distributes traffic across multiple targets.
 
@@ -87,6 +102,9 @@ Health Checks:
 ```
 
 ### CodePipeline + CodeDeploy (CI/CD)
+**What:** CodePipeline orchestrates your build-test-deploy workflow while CodeDeploy handles the actual deployment to EC2 instances using strategies like rolling or blue/green.
+**Why:** Interviewers ask about AWS-native CI/CD to see if you can automate deployments and explain trade-offs between deployment strategies like blue/green vs canary.
+
 ```
 Pipeline: Source → Build → Test → Deploy
 

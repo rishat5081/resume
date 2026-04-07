@@ -3,6 +3,9 @@
 ## 27.1 Key Techniques
 
 ### System Prompts
+**What:** Instructions set in the "system" role message that define the LLM's persona, behavior, output format, and constraints for the entire conversation.
+**Why:** System prompts are your primary control lever for consistent, production-quality LLM output -- interviewers want to see you can constrain model behavior effectively.
+
 ```
 You are a senior review analyst for a multi-location business management platform.
 Your task is to analyze customer reviews and extract:
@@ -14,6 +17,9 @@ Always respond in valid JSON format.
 ```
 
 ### Few-Shot Prompting
+**What:** A technique where you provide example input-output pairs in the prompt so the LLM learns the desired format and behavior without any fine-tuning.
+**Why:** Few-shot prompting is the fastest way to get consistent, structured outputs from an LLM and is often the first optimization interviewers expect you to reach for.
+
 ```
 Classify the following reviews:
 
@@ -28,6 +34,9 @@ Classification:
 ```
 
 ### Chain-of-Thought
+**What:** A prompting strategy that instructs the LLM to break down its reasoning into explicit intermediate steps before producing a final answer.
+**Why:** Chain-of-thought dramatically improves accuracy on complex reasoning tasks and shows interviewers you understand how to get reliable results from LLMs.
+
 ```
 Analyze this business review step by step:
 1. First, identify the overall sentiment
@@ -39,6 +48,9 @@ Review: "The food was incredible but the waiter was rude and it took forever to 
 ```
 
 ### Structured Output
+**What:** A prompt pattern that forces the LLM to return data in a specific schema (usually JSON) by providing the exact format in the instructions.
+**Why:** Structured output is essential for production AI systems where downstream code needs to parse LLM responses reliably -- interviewers test this to see if you can build real integrations.
+
 ```
 Respond in this exact JSON format:
 {
